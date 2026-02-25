@@ -1,7 +1,7 @@
 ---
 title: Tags
 layout: default
-description: keep hungry keep foolish
+description: 大模型方向标签导航
 header-img: "img/tag-bg.jpg"
 ---
 
@@ -23,12 +23,11 @@ header-img: "img/tag-bg.jpg"
 <div class="container">
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- 标签云 -->
-			<div id='tag_cloud' class="tags">
-				{% for tag in site.tags %}
-				<a href="#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">{{ tag[0] }}</a>
-				{% endfor %}
-			</div>
+            <div id='tag_cloud' class="tags">
+                {% for tag in site.llm_tags %}
+                <a href="#{{ tag | slugify }}" title="{{ tag }}">{{ tag }}</a>
+                {% endfor %}
+            </div>
 
             <!--<blockquote class="tag-comments">
                 标签命名规范：
@@ -36,34 +35,18 @@ header-img: "img/tag-bg.jpg"
                     <li>外国产品、术语优先使用英文</li>
             </blockquote>-->
 
-            <!-- 标签列表 -->
-			{% for tag in site.tags %}
-			<div class="one-tag-list">
-			  	<span class="fa fa-tag listing-seperator" id="{{ tag[0] }}">
-                    <span class="tag-text">{{ tag[0] }}</span>
+            {% for tag in site.llm_tags %}
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="{{ tag | slugify }}">
+                    <span class="tag-text">{{ tag }}</span>
                 </span>
-				{% for post in tag[1] %}
-				  <!-- <li class="listing-item">
-				  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-				  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-				  </li> -->
-				 <div class="post-preview">
-				    <a href="{{ post.url | prepend: site.baseurl }}">
-				        <h2 class="post-title">
-                            {{ post.title }}
-				        </h2>
-				        {% if post.subtitle %}
-				        <h3 class="post-subtitle">
-				            {{ post.subtitle }}
-				        </h3>
-				        {% endif %}
-				    </a>
-				    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-				</div>
-				<hr>
-				{% endfor %}
-			</div>
-			{% endfor %}
+                <div class="post-preview">
+                    <h3 class="post-subtitle">该方向内容正在整理中</h3>
+                    <p class="post-meta">后续将围绕该标签发布大模型相关博客。</p>
+                </div>
+                <hr>
+            </div>
+            {% endfor %}
 
 		</div>
 	</div>

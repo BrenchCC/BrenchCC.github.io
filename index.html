@@ -1,42 +1,31 @@
 ---
 layout: page
-description: "Thinking will not overcome fear but action will."
+description: "Github 项目博文展示"
 ---
 
-{% for post in paginator.posts %}
+{% if site.featured_projects %}
+{% for project in site.featured_projects %}
 <div class="post-preview">
-    <a href="{{ post.url | prepend: site.baseurl }}">
+    <a target="_blank" href="{{ project.url }}">
         <h2 class="post-title">
-            {{ post.title }}
+            {{ project.name }}
         </h2>
-        {% if post.subtitle %}
         <h3 class="post-subtitle">
-            {{ post.subtitle }}
+            GitHub Project
         </h3>
-        {% endif %}
         <div class="post-content-preview">
-            {{ post.content | strip_html | truncate:200 }}
+            {{ project.description }}
         </div>
     </a>
     <p class="post-meta">
-        Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}
+        By {{ site.title }} · <a target="_blank" href="{{ project.url }}">查看仓库</a>
     </p>
 </div>
 <hr>
 {% endfor %}
-
-<!-- Pager -->
-{% if paginator.total_pages > 1 %}
-<ul class="pager">
-    {% if paginator.previous_page %}
-    <li class="previous">
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
-    </li>
-    {% endif %}
-    {% if paginator.next_page %}
-    <li class="next">
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
-    </li>
-    {% endif %}
-</ul>
+{% else %}
+<div class="post-preview">
+    <h2 class="post-title">暂无项目内容</h2>
+    <div class="post-content-preview">请先在 _config.yml 中配置 featured_projects。</div>
+</div>
 {% endif %}

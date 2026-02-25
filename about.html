@@ -17,18 +17,11 @@ header-img: "img/post-bg-rwd.jpg"
     <section class="about-contact">
         <h5>Contact</h5>
         <ul class="about-contact-list">
+            {% if site.xiaohongshu_url %}
             <li>
-                GitHub：
-                <a target="_blank" href="https://github.com/{{ site.github_username }}">
-                    github.com/{{ site.github_username }}
-                </a>
+                小红书：
+                <a target="_blank" href="{{ site.xiaohongshu_url }}">{{ site.xiaohongshu_username }}</a>
             </li>
-            <li>
-                邮箱：
-                <a href="mailto:{{ site.email }}">{{ site.email }}</a>
-            </li>
-            {% if site.xiaohongshu_username %}
-            <li>小红书：{{ site.xiaohongshu_username }}</li>
             {% endif %}
         </ul>
     </section>

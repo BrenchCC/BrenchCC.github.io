@@ -38,14 +38,12 @@ layout: default
                     <!-- no hr -->
                     <h5><a href="{{'/tags/' | prepend: site.baseurl }}">FEATURED TAGS</a></h5>
                     <div class="tags">
-        				{% for tag in site.tags %}
-                            {% if tag[1].size > {{site.featured-condition-size}} %}
-                				<a href="{{ site.baseurl }}/tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">
-                                    {{ tag[0] }}
-                                </a>
-                            {% endif %}
-        				{% endfor %}
-        			</div>
+                        {% for tag in site.llm_tags %}
+                            <a href="{{ site.baseurl }}/tags/#{{ tag | slugify }}" title="{{ tag }}">
+                                {{ tag }}
+                            </a>
+                        {% endfor %}
+                    </div>
                 </section>
                 {% endif %}
 
@@ -87,12 +85,10 @@ layout: default
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="{{'/tags/' | prepend: site.baseurl }}">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        {% for tag in site.tags %}
-                            {% if tag[1].size > {{site.featured-condition-size}} %}
-                                <a href="{{ site.baseurl }}/tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">
-                                    {{ tag[0] }}
-                                </a>
-                            {% endif %}
+                        {% for tag in site.llm_tags %}
+                            <a href="{{ site.baseurl }}/tags/#{{ tag | slugify }}" title="{{ tag }}">
+                                {{ tag }}
+                            </a>
                         {% endfor %}
                     </div>
                 </section>
@@ -110,35 +106,13 @@ layout: default
                         {% if site.sidebar-about-description %}
                             <p>{{site.sidebar-about-description}}</p>
                         {% endif %}
-                        {% if site.github_username or site.email %}
-                        <ul class="list-inline">
-                            {% if site.github_username %}
-                            <li>
-                                <a target="_blank" href="https://github.com/{{ site.github_username }}">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            {% endif %}
-                            {% if site.email %}
-                            <li>
-                                <a href="mailto:{{site.email}}">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            {% endif %}
-                        </ul>
-                        {% endif %}
-                        {% if site.email %}
-                        <p>邮箱：<a href="mailto:{{site.email}}">{{site.email}}</a></p>
-                        {% endif %}
-                        {% if site.xiaohongshu_username %}
-                        <p>小红书：{{site.xiaohongshu_username}}</p>
+                        {% if site.xiaohongshu_url %}
+                        <p>
+                            小红书：
+                            <a target="_blank" href="{{site.xiaohongshu_url}}">
+                                {{site.xiaohongshu_username}}
+                            </a>
+                        </p>
                         {% endif %}
                     </div>
                 </section>
